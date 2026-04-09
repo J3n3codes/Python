@@ -1,7 +1,7 @@
 #RQ: To detect largest continuous market drop using an algorithm to see if it corresponds to spans of systemic risk?
 #Hypothesis: There is a positive correlation between continuous market drop and spans of systemic risk.
 
-#Method: Maximum array algorithm
+#Method: Maximum array algorithm, Pearson correlation coefficient
 
 #code
 import numpy as np
@@ -41,7 +41,8 @@ def main():
     print('End value:', end)
     print('Crash window:', returns[initial:end+1])
     print('varibale:', variable)
-    print('Correlation between drop span and varibales')
+    print('Correlation between drop span and variables')
+    print('Pearson correlation', correlation)
     
     if correlation < 0:
         print('Conclude: Continuos loss period was not positively correlated')
@@ -50,5 +51,3 @@ def main():
     else:
         print('Conclude: No association')
 main()
-
-
