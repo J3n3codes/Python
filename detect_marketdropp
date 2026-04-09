@@ -4,6 +4,7 @@
 #Method: Maximum array algorithm
 
 #code
+import numpy as np
 def lowest_drop_subarray(returns):
     current_sum = returns[0]
     lowest_sum = returns[0]
@@ -28,15 +29,26 @@ def lowest_drop_subarray(returns):
 def main():
     returns = [200, 300, -100, -50, 400, -400, -500, 100]
     lowest_sum, initial, end = lowest_drop_subarray(returns)
+    variable = [abs(x) for x in returns]
+    parameter = [0]*len(returns)
+    for i in range(initial, end + 1):
+        parameter[i] = 1
+    correlation = np.corrcoef(parameter, variable)[0,1]
+
     
     print('Return on a given day:', returns)
     print('Lowest continuous market drop:', lowest_sum)
     print('End value:', end)
     print('Crash window:', returns[initial:end+1])
+    print('varibale:', variable)
+    print('Correlation between drop span and varibales')
     
-    if lowest_sum < 0:
+    if correlation < 0:
+        print('Conclude: Continuos loss period was not positively correlated')
+    elif correlation > 0:
         print('Conclude: Continuos loss period was positively correlated')
     else:
-        print('Conclude: Continuos loss period was not positively correlated')
+        print('Conclude: No association')
 main()
+
 
