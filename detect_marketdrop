@@ -4,4 +4,39 @@
 #Method: Maximum array algorithm
 
 #code
-def 
+def lowest_drop_subarray(returns):
+    current_sum = returns[0]
+    lowest_sum = returns[0]
+    
+    current_start = 0
+    lowest_start = 0
+    lowest_end = 0
+    
+    for i in range(1, len(returns)):
+        if returns[i] < current_sum +returns[i]:
+            current_sum = returns[i]
+            current_start = i
+        else:
+            current_sum = current_sum + returns[i]
+            
+            if current_sum < lowest_sum:
+                lowest_sum = current_sum
+                lowest_start = current_start
+                lowest_end = i
+    return lowest_sum, lowest_start, lowest_end
+    
+def main():
+    returns = [200, 300, -100, -50, 400, -400, -500, 100]
+    lowest_sum, initial, end = lowest_drop_subarray(returns)
+    
+    print('Return on a given day:', returns)
+    print('Lowest continuous market drop:', lowest_sum)
+    print('End value:', end)
+    print('Crash window:', returns[initial:end+1])
+    
+    if lowest_sum < 0:
+        print('Conclude: Continuos loss period was positively correlated')
+    else:
+        print('Conclude: Continuos loss period was not positively correlated')
+main()
+
