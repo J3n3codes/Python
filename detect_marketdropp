@@ -51,3 +51,5 @@ def main():
     else:
         print('Conclude: No association')
 main()
+
+#Interpretation: Note Correlation is not Causation. If the value of r is positive then there is a positive correlation/association between factors of sustained span of losses  and systemic risks.
